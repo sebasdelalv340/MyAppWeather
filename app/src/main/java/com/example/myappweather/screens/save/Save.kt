@@ -44,7 +44,7 @@ fun SaveTemperature(navController: NavController, saveLoginViewModel: SaveLoginV
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            MyHeader(navController, "My Weather", Icons.Default.Search)
+            MyHeader("My Weather", Icons.Default.Search) { navController.navigate("search") }
             BodySave(
                 Modifier.weight(1f),
                 saveLoginViewModel,

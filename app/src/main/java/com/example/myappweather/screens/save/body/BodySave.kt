@@ -74,7 +74,7 @@ fun BodySave(
             } else {
                 if (isValidDate(date)) {
                     scope.launch {
-                        dataStoreManager.saveTemperatureForDate(date, temperature)
+                        dataStoreManager.saveTemperatureForDate(date, temperature + "ºC")
                     }
                     saveLoginViewModel.changeSuccessful(true)
                     saveLoginViewModel.changeShowDialog(true)

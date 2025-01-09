@@ -39,7 +39,9 @@ fun SearchTemperature(navController: NavController, searchLoginViewModel: Search
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            MyHeader(navController, "My Weather", Icons.Default.Create)
+            MyHeader( "My Weather", Icons.Default.Create) {
+                navController.navigate("save")
+            }
             BodySearch(
                 Modifier.weight(1f),
                 searchLoginViewModel,

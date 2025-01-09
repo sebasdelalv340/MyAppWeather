@@ -18,18 +18,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.myappweather.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyHeader(navController: NavController, texto: String, icon: ImageVector) {
+fun MyHeader(texto: String, icon: ImageVector, onNavigate:()-> Unit) {
     TopAppBar(
         title = {
             Row(
@@ -55,7 +53,7 @@ fun MyHeader(navController: NavController, texto: String, icon: ImageVector) {
         },
         actions = {
             IconButton(
-                onClick = { navController.navigate("search") },
+                onClick = onNavigate,
                 modifier = Modifier.padding(12.dp)
             ) {
                 Icon(

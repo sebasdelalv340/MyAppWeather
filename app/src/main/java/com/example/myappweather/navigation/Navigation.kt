@@ -9,11 +9,12 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.screens.save.SaveTemperature
 import com.example.myappweather.screens.search.SearchTemperature
+import com.example.myappweather.viewModel.SearchLoginViewModel
 import com.example.proyecto_app.viewModel.SaveLoginViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun AppNavigation(saveLoginViewModel: SaveLoginViewModel, dataStoreManager: DataStoreManager) {
+fun AppNavigation(saveLoginViewModel: SaveLoginViewModel, searchLoginViewModel: SearchLoginViewModel, dataStoreManager: DataStoreManager) {
     val navControlador = rememberNavController()
     NavHost(navController = navControlador, startDestination = "save") {
         composable("save") {
@@ -21,7 +22,7 @@ fun AppNavigation(saveLoginViewModel: SaveLoginViewModel, dataStoreManager: Data
         }
         composable("search")
         {
-            SearchTemperature(navControlador, saveLoginViewModel, dataStoreManager)
+            SearchTemperature(navControlador, searchLoginViewModel, dataStoreManager)
         }
 
     }
