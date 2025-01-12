@@ -34,3 +34,7 @@ Jetpack DataStore, respaldado por Google, es una solución robusta que recibe ac
 En este caso, se trata de un ejemplo simple en el que almacenamos dos tipos de datos, fecha:temperatura, pero podríamos guardar otro tipo de dato asociado a una fecha como nuestro peso si queremos llevar un control sobre él si estamos realizando una dieta o la precipitación por lluvia (como hace mi suegra).
 Esta funcionalidad podría ser ampliable a futuro, añadiendo por ejemplo la opción de acceder al histórico a modo de lista o calendario.
 
+# Documentación del código
+
+MainActivity se encuentra lo más limpio posible, únicamente instanciando al Datastore y el ViewModel para el manejo de datos, los almacenados y los introducidos por el usuario en la UI.
+https://github.com/sebasdelalv340/MyAppWeather/blob/0659836cfcfb8ac826be9e3a76c55c57740d69fe/app/src/main/java/com/example/myappweather/MainActivity.kt#L15
