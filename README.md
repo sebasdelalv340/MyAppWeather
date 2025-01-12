@@ -79,9 +79,8 @@ https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f
 
 Se trata de una carpeta que contiene funciones que pueden ser reutilizadas y de comprobación de datos.
 En este caso, tenemos un **Spacer** y una función para validar el formato de la fecha.
-https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/utils/MySpacer.kt#L9
-https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/utils/ValidarFecha.kt#L10
-
+https://github.com/sebasdelalv340/MyAppWeather/blob/e13d64b3612e9aed23c1c6353c6d897214b9a900/app/src/main/java/com/example/myappweather/utils/MySpacer.kt#L10
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/utils/ValidarFecha.kt#L14
 
 
 
