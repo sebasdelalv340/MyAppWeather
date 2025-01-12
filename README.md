@@ -36,5 +36,53 @@ Esta funcionalidad podría ser ampliable a futuro, añadiendo por ejemplo la opc
 
 # Documentación del código
 
-MainActivity se encuentra lo más limpio posible, únicamente instanciando al Datastore y el ViewModel para el manejo de datos, los almacenados y los introducidos por el usuario en la UI.
+## MainActivity
+
+MainActivity se encuentra lo más limpio posible, únicamente instanciando al Datastore y el ViewModel para el manejo de datos; los almacenados y los introducidos por el usuario en la UI.
 https://github.com/sebasdelalv340/MyAppWeather/blob/0659836cfcfb8ac826be9e3a76c55c57740d69fe/app/src/main/java/com/example/myappweather/MainActivity.kt#L15
+
+## Navegación
+
+Será la función principal que llamaremos desde nuestro **MainActivity** desde la cuál se navega entra los dos layout a través de sus rutas<String>.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/navigation/Navigation.kt#L17
+
+## ViewModel
+Existen dos, uno para el manejo de los datos introducidos en la pantalla de guardado y otro para la de búsqueda.
+
+### 1. SaveViewModel
+Gestiona los datos introducidos por el usuario en el layout de guardado.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/viewModel/SaveLoginViewModel.kt#L7
+
+### 2. SearchViewModel
+Gestiona los datos introducidos por el usuario en el layout de búsqueda.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/viewModel/SearchLoginViewModel.kt#L7
+
+## Screens
+
+### 1. Pantalla de guardado
+Se trata de una layout sencillo con una cabecera con un logo, título y un icono de navegación a la pantalla de búsqueda, un cuerpo dónde el usuario introduce fecha y temperatura, y un botón para **Guardar**.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/screens/save/Save.kt#L25
+
+Todos los estado se encuentran elevados en la función principal del guardado.
+En el cuerpo ejecutamos el guardado con **DataStore** dentro de una corutina y mostramos una alerta de diálogo tras la comprobación de posibles errores en los datos introducidos.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/screens/save/body/BodySave.kt#L25
+
+### 2. Pantalla de búsqueda
+Segundo layout con la misma cabecera, con la excepción del icono de navegación que ahora nos devuelve a la pantalla anterior, y un cuerpo donde se introduce la fecha a buscar y el botón de **Buscar**.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/screens/search/Search.kt#L25
+
+Igualmente encontramos los estados elevados respectivos a su **ViewModel**. Ejecutamos la búsqueda con **DataStore** dentro de una corutina y lanzamos una alerta de diálogo tras la comprobación de errores en los datos introducidos.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/screens/search/BodySearch.kt#L31
+
+## Utilidades
+
+Se trata de una carpeta que contiene funciones que pueden ser reutilizadas y de comprobación de datos.
+En este caso, tenemos un **Spacer** y una función para validar el formato de la fecha.
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/utils/MySpacer.kt#L9
+https://github.com/sebasdelalv340/MyAppWeather/blob/19109174e89264640eef1a1b492f7808228617cb/app/src/main/java/com/example/myappweather/utils/ValidarFecha.kt#L10
+
+
+
+
+
+
