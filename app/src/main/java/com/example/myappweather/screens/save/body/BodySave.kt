@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.utils.MyEspacer
 import com.example.myappweather.utils.isValidDate
-import com.example.proyecto_app.viewModel.SaveLoginViewModel
+import com.example.proyecto_app.viewModel.SaveViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun BodySave(
     modifier: Modifier,
-    saveLoginViewModel: SaveLoginViewModel,
+    saveViewModel: SaveViewModel,
     date: String,
     temperature: String,
     isDateError: Boolean,
@@ -54,16 +54,16 @@ fun BodySave(
         MyEspacer(60.dp)
         DateText(date, isDateError, dateFocusRequester)
         {
-            saveLoginViewModel.onValueChange(date = it, temperature)
+            saveViewModel.onValueChange(date = it, temperature)
         }
         MyEspacer(20.dp)
         TemperaturaText(temperature, isTemperatureError, temperatureFocusRequester)
         {
-            saveLoginViewModel.onValueChange(date, temperature = it)
+            saveViewModel.onValueChange(date, temperature = it)
         }
         MyEspacer(20.dp)
         ButtonSave {
-            saveLoginViewModel.onErrorChange(date, temperature)
+            saveViewModel.onErrorChange(date, temperature)
 
             // Dar el foco al que está vacío.
             if (isDateError) {
@@ -73,14 +73,14 @@ fun BodySave(
                 temperatureFocusRequester.requestFocus()
             } else {
                 if (isValidDate(date)) {
-                    scope.launch {
-                        dataStoreManager.saveTemperatureForDate(date, temperature + "ºC")
+                    scope.launch {  // Lanza el guardado de los datos en otro hilo para evitar bloqueos
+                        dataStoreManager.saveTemperatureForDate(date, temperature)
                     }
-                    saveLoginViewModel.changeSuccessful(true)
-                    saveLoginViewModel.changeShowDialog(true)
+                    saveViewModel.changeSuccessful(true)
+                    saveViewModel.changeShowDialog(true)
                 }
                 else {
-                    saveLoginViewModel.changeShowDialog(true)
+                    saveViewModel.changeShowDialog(true)
                 }
             }
         }
@@ -90,13 +90,13 @@ fun BodySave(
             {
                 // Limpiar los campos y mover el foco.
                 if (saveSuccessful) {
-                    saveLoginViewModel.onValueChange("", "")
+                    saveViewModel.onValueChange("", "")
                 } else {
-                    saveLoginViewModel.onValueChange("", temperature)
+                    saveViewModel.onValueChange("", temperature)
                 }
-                saveLoginViewModel.changeSuccessful(false)
+                saveViewModel.changeSuccessful(false)
                 dateFocusRequester.requestFocus()
-                saveLoginViewModel.changeShowDialog(false)
+                saveViewModel.changeShowDialog(false)
             }
         }
     }

@@ -18,19 +18,18 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.navigation.NavController
 import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.screens.save.MyHeader
-import com.example.myappweather.viewModel.SearchLoginViewModel
+import com.example.myappweather.viewModel.SearchViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SearchTemperature(navController: NavController, searchLoginViewModel: SearchLoginViewModel, dataStoreManager: DataStoreManager) {
-    val date by searchLoginViewModel.date.observeAsState("")
-
+fun SearchTemperature(navController: NavController, searchViewModel: SearchViewModel, dataStoreManager: DataStoreManager) {
+    val date by searchViewModel.date.observeAsState("")
 
     // Para gestionar los campos vacíos
-    val isDateError by searchLoginViewModel.isDateError.observeAsState(false)
+    val isDateError by searchViewModel.isDateError.observeAsState(false)
 
     // Para gestionar la AlertDialog
-    val showDialog by searchLoginViewModel.showDialog.observeAsState(false)
+    val showDialog by searchViewModel.showDialog.observeAsState(false)
 
     // Para gestionar el foco
     val dateFocusRequester = remember { FocusRequester() }
@@ -44,7 +43,7 @@ fun SearchTemperature(navController: NavController, searchLoginViewModel: Search
             }
             BodySearch(
                 Modifier.weight(1f),
-                searchLoginViewModel,
+                searchViewModel,
                 date,
                 isDateError,
                 dateFocusRequester,

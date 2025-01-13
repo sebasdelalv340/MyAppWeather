@@ -22,7 +22,7 @@ import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.screens.save.body.DateText
 import com.example.myappweather.utils.MyEspacer
 import com.example.myappweather.utils.isValidDate
-import com.example.myappweather.viewModel.SearchLoginViewModel
+import com.example.myappweather.viewModel.SearchViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -30,7 +30,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun BodySearch(
     modifier: Modifier,
-    searchLoginViewModel: SearchLoginViewModel,
+    searchViewModel: SearchViewModel,
     date: String,
     isDateError: Boolean,
     dateFocusRequester: FocusRequester,
@@ -45,7 +45,7 @@ fun BodySearch(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = temperatureResult,
+            text = "${temperatureResult}ºC",
             style = MaterialTheme.typography.displayMedium
         )
         MyEspacer(60.dp)
@@ -62,11 +62,11 @@ fun BodySearch(
         MyEspacer(60.dp)
         DateText(date, isDateError, dateFocusRequester)
         {
-            searchLoginViewModel.onValueChange(date = it)
+            searchViewModel.onValueChange(date = it)
         }
         MyEspacer(20.dp)
         ButtonSearch {
-            searchLoginViewModel.onErrorChange(date)
+            searchViewModel.onErrorChange(date)
 
             // Dar el foco al que está vacío.
             if (isDateError) {
@@ -74,12 +74,12 @@ fun BodySearch(
             } else {
                 if (isValidDate(date)) {
                     scope.launch {
-                        dataStoreManager.getTemperatureForDate(date).collect { temperature ->
+                        dataStoreManager.getTemperatureForDate(date).collect { temperature ->  // Lanzamos la recuperación de los datos en otro hilo para evitar bloqueos
                             temperatureResult = temperature ?: "No hay datos para esta fecha"
                         }
                     }
                 } else {
-                    searchLoginViewModel.changeShowDialog(true)
+                    searchViewModel.changeShowDialog(true)
                 }
             }
         }
@@ -88,9 +88,9 @@ fun BodySearch(
             DialogSearch(date)
             {
                 // Limpiar los campos y mover el foco.
-                searchLoginViewModel.onValueChange("")
+                searchViewModel.onValueChange("")
                 dateFocusRequester.requestFocus()
-                searchLoginViewModel.changeShowDialog(false)
+                searchViewModel.changeShowDialog(false)
             }
         }
     }

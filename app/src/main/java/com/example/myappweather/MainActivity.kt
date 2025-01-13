@@ -9,8 +9,8 @@ import androidx.annotation.RequiresApi
 import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.navigation.AppNavigation
 import com.example.myappweather.ui.theme.MyAppWeatherTheme
-import com.example.myappweather.viewModel.SearchLoginViewModel
-import com.example.proyecto_app.viewModel.SaveLoginViewModel
+import com.example.myappweather.viewModel.SearchViewModel
+import com.example.proyecto_app.viewModel.SaveViewModel
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -18,11 +18,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val saveLoginViewModel = SaveLoginViewModel()
-            val searchLoginViewModel = SearchLoginViewModel()
+            val saveViewModel = SaveViewModel()
+            val searchViewModel = SearchViewModel()
             val dataStoreManager = DataStoreManager(applicationContext)
             MyAppWeatherTheme {
-                AppNavigation(saveLoginViewModel, searchLoginViewModel, dataStoreManager)
+                AppNavigation(saveViewModel, searchViewModel, dataStoreManager)
             }
         }
     }

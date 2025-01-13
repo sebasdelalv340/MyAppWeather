@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SaveLoginViewModel: ViewModel() {
+class SaveViewModel: ViewModel() {
 
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date

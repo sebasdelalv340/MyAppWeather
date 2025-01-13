@@ -18,27 +18,27 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.navigation.NavController
 import com.example.myappweather.data.DataStoreManager
 import com.example.myappweather.screens.save.body.BodySave
-import com.example.proyecto_app.viewModel.SaveLoginViewModel
+import com.example.proyecto_app.viewModel.SaveViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun SaveTemperature(navController: NavController, saveLoginViewModel: SaveLoginViewModel, dataStoreManager: DataStoreManager) {
-    val date by saveLoginViewModel.date.observeAsState("")
-    val temperature by saveLoginViewModel.temperature.observeAsState("")
+fun SaveTemperature(navController: NavController, saveViewModel: SaveViewModel, dataStoreManager: DataStoreManager) {
+    val date by saveViewModel.date.observeAsState("")
+    val temperature by saveViewModel.temperature.observeAsState("")
 
     // Para gestionar los campos vacíos
-    val isDateError by saveLoginViewModel.isDateError.observeAsState(false)
-    val isTemperatureError by saveLoginViewModel.isTemperatureError.observeAsState(false)
+    val isDateError by saveViewModel.isDateError.observeAsState(false)
+    val isTemperatureError by saveViewModel.isTemperatureError.observeAsState(false)
 
     // Para gestionar la AlertDialog
-    val showDialog by saveLoginViewModel.showDialog.observeAsState(false)
+    val showDialog by saveViewModel.showDialog.observeAsState(false)
 
     // Para gestionar el foco
     val dateFocusRequester = remember { FocusRequester() }
     val temperatureFocusRequester = remember { FocusRequester() }
 
     // Para gestionar el mensaje en la Alerta de diálogo
-    val saveSuccessfull by saveLoginViewModel.saveSuccessful.observeAsState(false)
+    val saveSuccessfull by saveViewModel.saveSuccessful.observeAsState(false)
 
     val scope = rememberCoroutineScope()
 
@@ -47,7 +47,7 @@ fun SaveTemperature(navController: NavController, saveLoginViewModel: SaveLoginV
             MyHeader("My Weather", Icons.Default.Search) { navController.navigate("search") }
             BodySave(
                 Modifier.weight(1f),
-                saveLoginViewModel,
+                saveViewModel,
                 date,
                 temperature,
                 isDateError,
