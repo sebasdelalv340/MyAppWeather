@@ -75,7 +75,7 @@ fun BodySearch(
                 if (isValidDate(date)) {
                     scope.launch {
                         dataStoreManager.getTemperatureForDate(date).collect { temperature ->  // Lanzamos la recuperación de los datos en otro hilo para evitar bloqueos
-                            temperatureResult = temperature ?: "No hay datos para esta fecha"
+                            temperatureResult = temperature ?: "No hay datos"
                         }
                     }
                 } else {
