@@ -38,7 +38,7 @@ fun BodySearch(
     scope: CoroutineScope,
     dataStoreManager: DataStoreManager
 ) {
-    var temperatureResult by remember { mutableStateOf<String>("No disponible") }
+    var temperatureResult by remember { mutableStateOf<String>("No disponible ") }
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -75,7 +75,7 @@ fun BodySearch(
                 if (isValidDate(date)) {
                     scope.launch {
                         dataStoreManager.getTemperatureForDate(date).collect { temperature ->  // Lanzamos la recuperación de los datos en otro hilo para evitar bloqueos
-                            temperatureResult = temperature ?: "No hay datos"
+                            temperatureResult = temperature ?: "No hay datos "
                         }
                     }
                 } else {

@@ -42,25 +42,25 @@ fun SaveTemperature(navController: NavController, saveViewModel: SaveViewModel, 
 
     val scope = rememberCoroutineScope()
 
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            MyHeader("My Weather", Icons.Default.Search) { navController.navigate("search") }
-            BodySave(
-                Modifier.weight(1f),
-                saveViewModel,
-                date,
-                temperature,
-                isDateError,
-                isTemperatureError,
-                dateFocusRequester,
-                temperatureFocusRequester,
-                showDialog,
-                saveSuccessfull,
-                scope,
-                dataStoreManager
-            )
-        }
+
+    Column(modifier = Modifier.fillMaxSize()) {
+        MyHeader("My Weather", Icons.Default.Search) { navController.navigate("search") }
+        BodySave(
+            Modifier.weight(1f),
+            saveViewModel,
+            date,
+            temperature,
+            isDateError,
+            isTemperatureError,
+            dateFocusRequester,
+            temperatureFocusRequester,
+            showDialog,
+            saveSuccessfull,
+            scope,
+            dataStoreManager
+        )
     }
+
 }
 
 

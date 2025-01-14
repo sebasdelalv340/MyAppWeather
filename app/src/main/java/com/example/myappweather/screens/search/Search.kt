@@ -4,10 +4,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -36,21 +34,19 @@ fun SearchTemperature(navController: NavController, searchViewModel: SearchViewM
 
     val scope = rememberCoroutineScope()
 
-    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            MyHeader( "My Weather", Icons.Default.Create) {
-                navController.navigate("save")
-            }
-            BodySearch(
-                Modifier.weight(1f),
-                searchViewModel,
-                date,
-                isDateError,
-                dateFocusRequester,
-                showDialog,
-                scope,
-                dataStoreManager
-            )
+    Column(modifier = Modifier.fillMaxSize()) {
+        MyHeader( "My Weather", Icons.Default.Create) {
+            navController.navigate("save")
         }
+        BodySearch(
+            Modifier.weight(1f),
+            searchViewModel,
+            date,
+            isDateError,
+            dateFocusRequester,
+            showDialog,
+            scope,
+            dataStoreManager
+        )
     }
 }
